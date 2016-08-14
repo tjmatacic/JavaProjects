@@ -9,11 +9,46 @@ public class fileReaderTyler
 	  
 	  LineNumberReader lr = null;
 	  PrintWriter pw = null;
+	  String line= "";
 	  try
 	  {
 	      lr = new LineNumberReader(new FileReader("/home/tjmatacic/Desktop/column-store-tbat-2016/10mb_tyler_test_tbat.txt"));
 	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test.txt"), true));
 	      
+	      
+	      while (line != null && lr.getLineNumber() <= 33500 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_2.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 67000 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	       
+	      lr.close();
+	      lr = null;
+	      pw.flush();            
+	      pw.close();
+	      pw = null;
+	      
+	      
+	       
+	  
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      /*
 	      int counter=1; 
 	      String line = lr.readLine();
 	      
