@@ -29,6 +29,72 @@ public class fileReaderTyler
 	    	  pw.println(line);
 	          
 	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_3.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 100500 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_4.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 134000 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_5.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 167500 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_6.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 201000 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_7.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 234500 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_8.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 268000 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_9.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 301500 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      pw = new PrintWriter(new FileWriter(new File("/home/tjmatacic/Desktop/File_Write_Test_10.txt"), true));
+	      
+	      while (line != null && lr.getLineNumber() <= 335000 ) { 
+	    	  line = lr.readLine();
+	    	  pw.println(line);
+	          
+	      }
+	      
+	      
 	       
 	      lr.close();
 	      lr = null;
