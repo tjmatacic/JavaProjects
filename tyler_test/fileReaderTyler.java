@@ -18,17 +18,18 @@ public class fileReaderTyler
           File filename = new File("/home/tjmatacic/Desktop/File_Write_Test2.txt");
 
           int counter=1;
+          int fileLength = 0;
           String line = lr.readLine();
          
           while (lr.getLineNumber() != 0 )
           {
-              filename =new File("/home/tjmatacic/Desktop/File_Write_Test2.txt" + counter + ".sp");
+              filename =new File("/home/tjmatacic/Desktop/File_Write_Test2.txt" + counter);
               pw.println(line);
               line= lr.readLine();
           }
+          while (lr.getLineNumber () != 0 && fileLength < 335000)
           counter++;
-         
-                         
+                                  
       }
          
          
