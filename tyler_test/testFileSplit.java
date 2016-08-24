@@ -6,18 +6,18 @@ public class testFileSplit
 	public static void main(String[] args) throws Exception
     {
         RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/10mb_tyler_test_tbat.txt", "r");
-        long numSplits = 10; //from user input, extract it from args
+        long numSplits = 10; //how many file splits we want
         long sourceSize = raf.length();
         long bytesPerSplit = sourceSize/numSplits ;
         long remainingBytes = sourceSize % numSplits;
 
         int maxReadBufferSize = 8 * 1024; //8KB
-        for(int destIx=1; destIx <= numSplits; destIx++) {
-            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+destIx));
+        for(int i=1; i <= numSplits; i++) {
+            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+i));
             if(bytesPerSplit > maxReadBufferSize) {
                 long numReads = bytesPerSplit/maxReadBufferSize;
                 long numRemainingRead = bytesPerSplit % maxReadBufferSize;
-                for(int i=0; i<numReads; i++) {
+                for(int j=0; j<numReads; j++) {
                     readWrite(raf, bw, maxReadBufferSize);
                 }
                 if(numRemainingRead > 0) {
