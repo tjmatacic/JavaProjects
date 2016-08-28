@@ -5,15 +5,15 @@ public class testFileSplit
 {
 	public static void main(String[] args) throws Exception
     {
-        RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/10MB_tyler_tbat.txt", "r");
+        RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/1.5GB_tyler_tbat.txt", "r");
         long numSplits = 10; //how many file splits we want
         long sourceSize = raf.length();
         long bytesPerSplit = sourceSize/numSplits ;
         long remainingBytes = sourceSize % numSplits;
         
         
-        long computerMemory = 100;
-        long fileSlice = sourceSize/computerMemory;
+        long computerMemory = 1073741824; //<- one GB
+        long fileSlice = sourceSize / computerMemory;
 
         int maxReadBufferSize = 8 * 1024; //8KB
         for(int i=1; i <= numSplits; i++) 
