@@ -10,11 +10,26 @@ public class testFileSplit
         long sourceSize = raf.length();
         long bytesPerSplit = sourceSize/numSplits ;
         long remainingBytes = sourceSize % numSplits;
+        
+        
+        long computerMemory = 100;
+        long fileSlice = sourceSize/computerMemory;
 
         int maxReadBufferSize = 8 * 1024; //8KB
         for(int i=1; i <= numSplits; i++) 
         {
             BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+i));
+            
+            if (bytesPerSplit > fileSlice)
+            {
+            	long numReads = bytesPerSplit / maxReadBufferSize;
+            	
+                for(int j=0; j<numReads; j++) 
+                {
+                    readWrite(raf, bw, maxReadBufferSize);
+                }
+            }
+            
             
             if(bytesPerSplit > maxReadBufferSize) 
             {
