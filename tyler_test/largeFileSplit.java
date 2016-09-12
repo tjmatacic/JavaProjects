@@ -8,17 +8,29 @@ public class largeFileSplit
         RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/10MB_tyler_tbat.txt", "r");
         long numSplits = 10; //how many file splits we want
         long sourceSize = raf.length();
-        long bytesPerSplit = sourceSize/numSplits ;
-        long remainingBytes = sourceSize % numSplits;
-        
         
         long computerMemory = 1073741824; //<- one GB
         long fileSlice = sourceSize / computerMemory;
-
+        
+        long bytesPerSplit = sourceSize/numSplits;
+        long remainingBytes = fileSlice % numSplits;
+         
         int maxReadBufferSize = 8 * 1024; //8KB
+        
+        
+      
         for(int i=1; i <= numSplits; i++) 
         {
-            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+i));
+        	//Peek to see if we are at end of file
+        	long currentPosition = raf.getFilePointer();
+        	
+        	if(raf.read() == -1) //we have reached the end of file
+        	{
+        	  break;
+        	}
+        	raf.seek(currentPosition); //Go back to where we were before we did the read
+            
+        	BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+i));
             
             if (bytesPerSplit > fileSlice)
             {
@@ -27,9 +39,10 @@ public class largeFileSplit
                 for(int j=0; j<numReads; j++) 
                 {
                     readWrite(raf, bw, maxReadBufferSize);
+                    
                 }
+                
             }
-            
             
             if(bytesPerSplit < fileSlice) 
             {
@@ -40,18 +53,22 @@ public class largeFileSplit
                     readWrite(raf, bw, maxReadBufferSize);
                 }
                 
+                                
                 if(numRemainingRead > 0) 
                 {
                     readWrite(raf, bw, numRemainingRead);
                 }
+                
             }
             
+              
             else 
             {
                 readWrite(raf, bw, bytesPerSplit);
             }
             bw.close();
         }
+        
         
         if(remainingBytes > 0) 
         {
@@ -61,7 +78,7 @@ public class largeFileSplit
         }
             raf.close();
     }
-
+    
     static void readWrite(RandomAccessFile raf, BufferedOutputStream bw, long numBytes) throws IOException 
     {
         byte[] buf = new byte[(int) numBytes];
