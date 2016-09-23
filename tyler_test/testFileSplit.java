@@ -13,23 +13,36 @@ public static void main(String[] args) throws Exception
     long remainingBytes = sourceSize % numSplits;
 
     int maxReadBufferSize = 8 * 1024; //8KB
-    for(int destIx=1; destIx <= numSplits; destIx++) {
+    
+    for(int destIx=1; destIx <= numSplits; destIx++) 
+    {
         BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+destIx));
-        if(bytesPerSplit > maxReadBufferSize) {
+        
+        if(bytesPerSplit > maxReadBufferSize) 
+        {
             long numReads = bytesPerSplit/maxReadBufferSize;
             long numRemainingRead = bytesPerSplit % maxReadBufferSize;
-            for(int i=0; i<numReads; i++) {
+            
+            for(int i=0; i<numReads; i++) 
+            {
                 readWrite(raf, bw, maxReadBufferSize);
             }
-            if(numRemainingRead > 0) {
+            
+            if(numRemainingRead > 0) 
+            {
                 readWrite(raf, bw, numRemainingRead);
             }
-        }else {
+        }
+        
+        else 
+        {
             readWrite(raf, bw, bytesPerSplit);
         }
         bw.close();
     }
-    if(remainingBytes > 0) {
+    
+    if(remainingBytes > 0) 
+    {
         BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("split."+(numSplits+1)));
         readWrite(raf, bw, remainingBytes);
         bw.close();
