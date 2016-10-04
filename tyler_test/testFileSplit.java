@@ -6,7 +6,7 @@ public class testFileSplit
 
 public static void main(String[] args) throws Exception
 {
-    RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/10MB_tyler_tbat.txt", "r");
+	RandomAccessFile raf = new RandomAccessFile("/home/tjmatacic/Desktop/column-store-tbat-2016/10MB_tyler_tbat.txt", "r");
     long numSplits = 10; //from user input, extract it from args
     long sourceSize = raf.length();
     long bytesPerSplit = sourceSize/numSplits ;
